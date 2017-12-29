@@ -13,8 +13,9 @@ class SingleLinkedList():
     def display_list(self):
         p = self.start
         while p.link is not None:
-            print(p.info, ' ', " ")
+            print(p.info)
             p = p.link
+        print(p.info)
 
     def count_nodes(self):
         if self.start is None:
@@ -22,11 +23,11 @@ class SingleLinkedList():
             return
         else:
             p = self.start
-            count = 0
+            count = 1
             while p.link is not None:
                 count += 1
                 p = p.link
-            print('count: ' + count)
+            print('count: ' + str(count))
 
     def search(self, x):
         position = 1
@@ -41,13 +42,27 @@ class SingleLinkedList():
         print(' ' + x + ' not found in list')
 
     def insert_in_beginning(self, data):
-        pass
+        temp = Node(data)
+        temp.link = self.start
+        self.start = temp
 
     def insert_at_end(self, data):
-        pass
+        temp = Node(data)
+        if self.start  is None:
+            self.start = temp
+            return
+        p = self.start
+        while p.link is not None:
+            p = p.link
+        p.link = temp
 
     def create_list(self):
-        pass
+        n = int(input('enter the number of nodes: '))
+        if n == 0:
+            return
+        for i in range(n):
+            data = int(input('enter element: '))
+            self.insert_at_end(data)
 
     def insert_after(self, data, x):
         pass
@@ -110,10 +125,28 @@ linked_list.create_list()
 
 while True:
     print('1. display')
+    print('2. count')
+    print('3. search for an element')
+    print('4. insert in an empty list')
+    print('5. insert a node at the end')
+    print('6. insert a node before a specified node')
+    print('7. insert at a given position')
+    print('19. exit')
     option = int(input('Enter your choice: '))
 
     if option == 1:
         linked_list.display_list()
+    elif option == 2:
+        linked_list.count_nodes()
+    elif option == 3:
+        data = int(input('enter the element to be searched: '))
+        linked_list.search(data)
+    elif option == 4:
+        data = int(input('enter the element to be inserted: '))
+        linked_list.insert_in_beginning(data)
+    elif option == 5:
+        data = int(input('enter the element to be inserted: '))
+        linked_list.insert_at_end(data)
     elif option == 19:
         break
     else:
