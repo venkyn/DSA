@@ -104,16 +104,16 @@ class SingleLinkedList():
         pass
 
 
-list = SingleLinkedList()
+linked_list = SingleLinkedList()
 
-list.create_list()
+linked_list.create_list()
 
 while True:
     print('1. display')
     option = int(input('Enter your choice: '))
 
     if option == 1:
-        list.display_list()
+        linked_list.display_list()
     elif option == 19:
         break
     else:
