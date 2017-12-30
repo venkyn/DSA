@@ -1,4 +1,5 @@
 # Single Linked List
+from test.test_sax import start
 class Node:
     def __init__(self, value):
         self.info = value
@@ -65,16 +66,51 @@ class SingleLinkedList():
             self.insert_at_end(data)
 
     def insert_after(self, data, x):
-        pass
+        p = self.start
+        while p is not None:
+            if p.info ==  x:
+                break
+            p = p.link
+        
+        if p is None:
+            print(x, 'is not present in the list')
+        else:
+            temp = Node(data)
+            temp.link = p.link
+            p.link = temp
 
     def insert_before(self, data, x):
-        pass
+        temp = Node(data)
+        p = self.start
+        while p.link is not None:
+            if p.link.info ==  x:
+                break
+            p = p.link
+        temp.link = p.link
+        p.link = temp
 
     def insert_at_position(self, data, x):
-        pass
+        temp =  Node(data)
+        count = 1
+        p = self.start
+        while p.link is not None:
+            if count == x:
+                break
+            else:
+                count += 1
+                p = p.link
+        print('count: '+count)
+        temp.link = p.link
+        p.link =  temp
+        
 
     def delete_node(self, x):
-        pass
+        p = self.start
+        while p is not None:
+            if p.info == x:
+                break
+            p = p.link
+        p.link = p.link.link
 
     def delete_first_node(self):
         pass
@@ -131,6 +167,9 @@ while True:
     print('5. insert a node at the end')
     print('6. insert a node before a specified node')
     print('7. insert at a given position')
+    print('8. insert after')
+    print('9. insert before')
+    print('10. delete')
     print('19. exit')
     option = int(input('Enter your choice: '))
 
@@ -147,8 +186,19 @@ while True:
     elif option == 5:
         data = int(input('enter the element to be inserted: '))
         linked_list.insert_at_end(data)
+    elif option == 8:
+        data = int(input('enter the element to be inserted'))
+        x = int(input('position after?'))
+        linked_list.insert_after(data, x)
+    elif option == 9:
+        data = int(input('enter the element to be inserted'))
+        x = int(input('position before?'))
+        linked_list.insert_before(data, x)
+    elif option ==10:
+        x = int(input('enter the element to be deleted:'))
+        linked_list.delete_node(x)
     elif option == 19:
         break
     else:
         print('wrong option')
-    print()
+    print('')
